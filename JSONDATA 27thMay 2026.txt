@@ -1,0 +1,57 @@
+{
+    "name": "John",
+    "id": 67543,
+    "salary": 987557.0,
+    "empaddress": {
+        "street": "MG road",
+        "city": "Delhi",
+        "zipcode": 713308
+    },
+    "married": false
+}
+
+
+-------------------------------------------------------------------------------------------
+
+[
+    {
+        "name": "Harry",
+        "age": 45,
+        "salary": 80000.0,
+        "married": false
+    },
+    {
+        "name": "Matt",
+        "age": 35,
+        "salary": 90000.0,
+        "married": true
+    },
+    {
+        "name": "Lloyd",
+        "age": 55,
+        "salary": 70000.0,
+        "married": false
+    }
+]
+
+
+---------------------------------------------------------------------------------------------
+
+
+{
+    "name": "Saurabh",
+    "id": 4567,
+    "salary": 90000.0,
+    "x": {
+        "zip": 713304,
+        "state": "NCR",
+        "city": "Delhi"
+    },
+    "banks": [
+        "SBI",
+        "HDFC",
+        "ICICI"
+    ]
+}
+
+
