@@ -1,0 +1,338 @@
+CREATE TABLE janbaskdemo.Aggregate (
+    Employee_ID int,
+    EmployeeName varchar(255),
+    Address varchar(255) ,
+   Salary int
+    
+);
+
+INSERT INTO janbaskdemo.Aggregate
+VALUES ('6789', 'Manish','KOlkata',42000);
+
+INSERT INTO janbaskdemo.Aggregate
+VALUES ('5674', 'Rohit','Hyderabad',35000);
+
+INSERT INTO janbaskdemo.Aggregate
+VALUES ('1674', null,'Hyderabad',35000);
+
+INSERT INTO janbaskdemo.Aggregate
+VALUES ('7899', null,'Hyderabad',35000);
+
+INSERT INTO janbaskdemo.Aggregate
+VALUES ('1899', null,'Mumbai',35000);
+
+select * from janbaskdemo.Aggregate;
+
+select count(Address)as No_Of_Employees from janbaskdemo.Aggregate ;
+select count(*)as No_Of_Employees from janbaskdemo.Aggregate where Address='Hyderabad';
+
+select count( DISTINCT Address) from janbaskdemo.Aggregate;
+select count( DISTINCT Address) from janbaskdemo.Aggregate;
+
+Update janbaskdemo.Aggregate set Salary=20000 where Address='Mumbai';
+commit;
+
+select SUM(salary) AS TOTAL_SALARY from janbaskdemo.Aggregate;
+select MAX(salary) AS MAXIMUM_SALARY from janbaskdemo.Aggregate;
+select MIN(salary) AS MINIMUM_SALARY from janbaskdemo.Aggregate;
+select AVG(salary) AS AVERAGE_SALARY from janbaskdemo.Aggregate;
+
+select Address from janbaskdemo.Aggregate LIMIT 1;
+
+select count(DISTINCT Address) from janbaskdemo.Aggregate where Address IN ('Kolkata','Mumbai','Hyderabad')
+
+ 
+
+
+
+
+CREATE TABLE janbaskdemo.EmployeesNew (
+    emp_ID int,
+empName varchar(255),
+    designation varchar(255) ,
+   salary int,
+   age int
+    
+);
+
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('2789', 'Rakesh','QALead',100000,34);
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('1789', 'Manish','Staffeng',200000,47);
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('6789', 'Mahesh','Manager',300000,52);
+
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('22789', 'Ashish','Manager',400000,52);
+
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('14789', 'Akash','Manager',350000,52);
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('9789', 'Suresh','Trainee',50000,31);
+INSERT INTO janbaskdemo.EmployeesNew
+VALUES ('4789', 'Harish','SeniorVP',400000,44);
+
+select * from janbaskdemo.EmployeesNew;
+
+select max(salary),designation AS TOTAL_SALARY from janbaskdemo.EmployeesNew group by designation 
+Having max(salary)>100000;
+
+select * from janbaskdemo.EmployeesNew where age <> '52'
+
+
+
+
+
+
+
+
+CREATE TABLE janbaskdemo.officer (
+    Employee_ID int,
+    EmployeeName varchar(255),
+    Address varchar(255) ,
+   Salary int
+    
+);
+
+
+CREATE TABLE janbaskdemo.officerNew (
+    Employee_ID int,
+    EmployeeName varchar(255),
+    Address varchar(255) ,
+   Salary int
+    
+);
+
+
+CREATE TABLE janbaskdemo.student (
+    Student_ID int,
+    Student_name varchar(255),
+    Student_Qual varchar(255),
+	Age int
+    
+);
+
+select Employee_ID,EmployeeName,Address,Salary from janbaskdemo.officer where Employee_ID IN
+(select Employee_ID  from janbaskdemo.officerNew);
+
+select * from janbaskdemo.officer;
+select * from janbaskdemo.officerNew;
+
+select * from janbaskdemo.officer where Salary >
+(select AVG(Salary) from janbaskdemo.officer);
+
+
+
+
+ 
+
+
+
+INSERT INTO janbaskdemo.officerNew
+VALUES ('2789', 'Rakesh','Kolkata',80000);
+INSERT INTO janbaskdemo.officerNew
+VALUES ('6589', 'Mahesh','Delhi',100000);
+INSERT INTO janbaskdemo.officerNew
+VALUES ('2689', 'Harish','Hyderabad',200000);
+INSERT INTO janbaskdemo.officerNew
+VALUES ('5432', 'Ravi','Mumbai',400000);
+INSERT INTO janbaskdemo.officerNew
+VALUES ('9120', 'Piyush','Hyderabad',200000);
+INSERT INTO janbaskdemo.officer
+VALUES ('7267', 'Raman','Hyderabad',200000);
+
+
+
+INSERT INTO janbaskdemo.student
+VALUES ('2789', 'Rakesh','Btech',32);
+INSERT INTO janbaskdemo.student
+VALUES ('4789', 'Harish','BCA',34);
+INSERT INTO janbaskdemo.student
+VALUES ('5689', 'Tom','CA',38);
+INSERT INTO janbaskdemo.student
+VALUES ('5689', 'Dilip','MBA',42);
+
+INSERT INTO janbaskdemo.student
+VALUES ('9789', 'Mihir','MBA',42);
+select * from janbaskdemo.officer ;
+select * from janbaskdemo.student;
+
+select a.Employee_ID as Registered_Employees_ID,a.EmployeeName,a.Address,a.Salary,b.Student_Qual,b.Age from janbaskdemo.officer a
+INNER JOIN janbaskdemo.student b
+ON a.Employee_ID=b.Student_ID;
+
+select a.Employee_ID as Registered_Employees_ID,a.EmployeeName,a.Address,a.Salary,b.Student_Qual,b.Age from janbaskdemo.officer a
+LEFT JOIN janbaskdemo.student b
+ON a.Employee_ID=b.Student_ID;
+
+select a.Employee_ID as Registered_Employees_ID,a.EmployeeName,a.Address,a.Salary,b.Student_Qual,b.Age from janbaskdemo.officer a
+RIGHT JOIN janbaskdemo.student b
+ON a.Employee_ID=b.Student_ID;
+
+
+
+select a.Employee_ID as Registered_Employees_ID,a.EmployeeName,a.Address,a.Salary,b.Student_Qual,b.Age from janbaskdemo.officer a
+ JOIN janbaskdemo.student b
+ON a.Employee_ID=b.Student_ID
+where Address IN ('Kolkata','Hyderabad');
+
+CREATE TABLE janbaskdemo.DepartmentNew (
+    Department_ID int,
+    DEmployeeName varchar(255)
+   
+    
+);
+INSERT INTO janbaskdemo.DepartmentNew
+VALUES ('9655646', 'Rakesh');
+INSERT INTO janbaskdemo.DepartmentNew
+VALUES ('1655646', 'Mohin');
+INSERT INTO janbaskdemo.DepartmentNew
+VALUES ('4655646', 'Ratul');
+select * from janbaskdemo.DepartmentNew;
+
+select a.Employee_ID as Registered_Employees_ID,a.EmployeeName,a.Address,a.Salary,b.Student_Qual,b.Age,c.Department_ID from janbaskdemo.officer a
+ JOIN janbaskdemo.student b
+ JOIN janbaskdemo.DepartmentNew c
+ON a.Employee_ID=b.Student_ID
+AND 
+a.EmployeeName=c.DEmployeeName
+Group By Address
+
+
+
+CREATE TABLE janbaskdemo.EmployeeManager (
+    emp_ID int,
+firstname varchar(255),
+lastname varchar(255),
+email  varchar(255),
+phone_number  varchar(255),
+salary int,
+manager_id int,
+department_id int
+
+);
+
+INSERT INTO janbaskdemo.EmployeeManager
+VALUES ('2789', 'Rakesh','singh','abc@gmail.com',9322,50000,1276,45)
+INSERT INTO janbaskdemo.EmployeeManager
+VALUES ('1789', 'mahesh','kumar','def@gmail.com',8322,60000,1276,56)
+INSERT INTO janbaskdemo.EmployeeManager
+VALUES ('1276', 'Suresh','kumar','efg@gmail.com',7322,100000,7865,45)
+INSERT INTO janbaskdemo.EmployeeManager
+VALUES ('7865', 'Harish','Agarwal','yuh@gmail.com',5322,150000,NULL,56)
+
+INSERT INTO janbaskdemo.EmployeeManager
+VALUES ('2322', 'Tom','Kumar','yuh@gmail.com',5322,150000,2789,56)
+
+select * from janbaskdemo.EmployeeManager;
+
+select a.firstname,a.lastname AS Employee,
+m.firstname,m.lastname AS Manager
+from janbaskdemo.EmployeeManager a JOIN janbaskdemo.EmployeeManager m
+ON a.emp_ID=m.manager_id;
+
+select a.firstname AS Employee_FirstName,a.lastname AS Employee_LastName ,a.emp_ID as Employee_ID,a.phone_number as Phone_number,
+m.firstname AS MANAGER_FIRSTNAME,m.lastname AS MANAGER_LASTNAME,m.manager_id AS MANAGER_ID,a.salary AS EMP_SALARY
+from janbaskdemo.EmployeeManager a LEFT JOIN janbaskdemo.EmployeeManager m
+ON a.manager_id=m.emp_ID;
+
+
+
+
+CREATE TABLE janbaskdemo.IndexExample2 (
+    Employee_ID int PRIMARY KEY,
+    EmployeeName varchar(255) UNIQUE,
+    Address varchar(255) ,
+   Salary int
+    
+);
+
+select * from janbaskdemo.IndexExample2;
+Create  View MyView As select EmployeeName from janbaskdemo.IndexExample2;
+select * from MyView;
+Alter View MyView As Select Employee_ID,EmployeeName from janbaskdemo.IndexExample2;
+
+DROP View MyView;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE janbaskdemo.IndexExample (
+    Employee_ID int PRIMARY KEY,
+    EmployeeName varchar(255),
+    Address varchar(255) ,
+   Salary int
+    
+);
+INSERT INTO janbaskdemo.IndexExample
+VALUES ('6789', 'Manish','KOlkata',42000);
+INSERT INTO janbaskdemo.IndexExample
+VALUES ('2789', 'Ramesh','Hyderabad',52000);
+INSERT INTO janbaskdemo.IndexExample
+VALUES ('1789', 'Harish','Mumbai',32000);
+INSERT INTO janbaskdemo.IndexExample
+VALUES ('8543', 'Rohit','Delhi',152000);
+
+Create Index myIndex on janbaskdemo.IndexExample(Employee_ID);
+Create Index myIndex2 on janbaskdemo.IndexExample(EmployeeName);
+
+
+
+
+EXPLAIN select * from janbaskdemo.IndexExample where EmployeeName='Rohit'
+
+Show Indexes from janbaskdemo.IndexExample;
+
+CREATE TABLE janbaskdemo.IndexExample2 (
+    Employee_ID int PRIMARY KEY,
+    EmployeeName varchar(255) UNIQUE,
+    Address varchar(255) ,
+   Salary int
+    
+);
+
+INSERT INTO janbaskdemo.IndexExample2
+VALUES ('6789', 'Manish','KOlkata',42000);
+INSERT INTO janbaskdemo.IndexExample2
+VALUES ('2789', 'Ramesh','Hyderabad',52000);
+INSERT INTO janbaskdemo.IndexExample2
+VALUES ('1789', 'Rohan','Mumbai',32000);
+INSERT INTO janbaskdemo.IndexExample2
+VALUES ('8543', 'Rohit','Delhi',152000);
+
+ select * from janbaskdemo.IndexExample2;
+ 
+ create UNIQUE INDEX myindex6 on janbaskdemo.IndexExample2 (Employee_ID)
+ show Index from janbaskdemo.IndexExample2;
+ 
+ DROP Index myindex4 ON janbaskdemo.IndexExample2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
